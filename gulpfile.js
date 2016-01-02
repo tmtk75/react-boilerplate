@@ -6,15 +6,23 @@ var env = require('gulp-env');
 gulp.task('default', ['set-env', 'mocha', 'watch-mocha']);
 
 gulp.task('mocha', function() {
-  gulp.src(['test/*.js'], {read: false})
+  return gulp.src(['test/*.js'], {read: false})
     .pipe(mocha({reporter: 'list', require: ["babel-core/register"]}))
     .on('error', gutil.log);
 });
 
 gulp.task('watch-mocha', function() {
-  gulp.watch(['test/**/*.js'], ['mocha']);
+  return gulp.watch(['test/**/*.js'], ['mocha']);
+});
+
+gulp.task('lint', function() {
+  var eslint   = require('gulp-eslint');
+  return gulp.src(["src/**/*.js"])
+    .pipe(eslint({useEslintrc: true}))
+    .pipe(eslint.format())
+    .pipe(eslint.failAfterError());
 });
 
 gulp.task('set-env', function () {
-  env({vars: {BABEL_ENV: "test"}})
+  return env({vars: {BABEL_ENV: "test"}})
 });
