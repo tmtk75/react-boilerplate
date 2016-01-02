@@ -23,6 +23,10 @@ gulp.task('lint', function() {
     .pipe(eslint.failAfterError());
 });
 
+gulp.task('watch-lint', function() {
+  return gulp.watch(['src/**/*.js'], ['lint']);
+});
+
 gulp.task('set-env', function () {
   return env({vars: {BABEL_ENV: "test"}})
 });
