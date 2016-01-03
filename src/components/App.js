@@ -1,5 +1,6 @@
 /* @flow */
 import React, {PropTypes} from "react"
+import {Set} from "immutable"
 
 type GHUser = {
   login: string;
@@ -9,15 +10,17 @@ type GHUser = {
 
 export default class App extends React.Component {
   props: {
-    user: GHUser;
+    users: Set<GHUser>;
   };
   static to_24px(url: string): string {
     return `${url}&s=24`
   }
   render(): Object {
-    let u = this.props.user;
-    return <div>
-             {u.login} <img src={App.to_24px(u.avatar_url)}></img> {u.id}
-           </div>
+    return <div>{
+           this.props.users.map(u =>
+             <div className="Users--user" key={u.id}>
+               <img src={App.to_24px(u.avatar_url)}></img> {u.id} {u.login}
+             </div>)
+           }</div>
   }
 }

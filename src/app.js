@@ -1,10 +1,15 @@
 /* @flow */
 import React    from "react"
 import ReactDOM from "react-dom"
+import {Set} from "immutable"
 import App from "./components/App.js"
 
-window.fetch("https://api.github.com/users/tmtk75", {method:"GET"})
-  .then(res => res.json())
-  .then(j => ReactDOM.render(
-               <App user={j}/>,
+const urls  = ["facebook", "github", "google"]
+  .map(user => `https://api.github.com/users/${user}`)
+  .map(url => window.fetch(url, {method:"GET"})
+                .then(res => res.json()))
+
+Promise.all(urls)
+  .then(e => ReactDOM.render(
+               <App users={Set(e)}/>,
                document.getElementById("container")));
