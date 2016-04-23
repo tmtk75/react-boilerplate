@@ -1,2 +1,2 @@
-require("./styles.styl")
-require("./app.js");
+require('./styles.styl');
+require('./app.js');

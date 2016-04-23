@@ -50,6 +50,7 @@
     "npm": "^3.8.7",
     "power-assert": "^1.2.0",
     "style-loader": "^0.13.0",
+    "stylus": "^0.54.2",
     "stylus-loader": "^2.0.0",
     "webpack": "^1.12.9",
     "webpack-dev-middleware": "^1.4.0",
