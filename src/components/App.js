@@ -1,5 +1,5 @@
 /* @flow */
-import React, { PropTypes } from 'react';
+import React from 'react';
 import { Set } from 'immutable';
 
 type GHUser = {
@@ -13,13 +13,11 @@ export default class App extends React.Component {
     return `${url}&s=24`;
   }
   props: {
-    path: PropTypes.string;
-    users: Set<GHUser>;
+    users: Set<GHUser>,
   };
   render(): Object {
     return (
       <div>
-        <div>{this.props.path}</div>
         {this.props.users.map(u =>
           <div className="Users--user" key={u.id}>
             <img src={App.to24px(u.avatar_url)} alt={u.login}></img> {u.id} {u.login}

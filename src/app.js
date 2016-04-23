@@ -11,8 +11,5 @@ const urls = ['facebook', 'github', 'google']
 
 Promise.all(urls)
   .then(e => ReactDOM.render(
-    <App
-      path={'https://api.github.com/users/${user}'}
-      users={new Set(e)}
-    />,
+    <App users={new Set(e)} />,
     document.getElementById('container')));
